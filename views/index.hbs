@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A map of the tech companies in Tysons Corner, Virginia.">
+    <meta name="author" content="Brian Albin">
+    <title>Tysons Tech Map</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mainmapstyles.css">
+    <link rel="stylesheet" href="css/commonstyles.css">
+</head>
+<body>
+    <div id="wrapper">
+        <aside id="sidebar-wrapper">
+            <div class="search-bar-container">
+                <input type="text" data-bind="textInput: filter" class="search-bar-text-box">
+                <img src="img/magnifyingglass.svg" alt="Find" class="search-bar-magnifying-glass">
+            </div>
+            <ul class="sidebar" data-bind="foreach: filterCompanies">
+                <li data-bind="click: $parent.setActiveLocation">
+                    <a href="#" data-bind="text: name, css: $root.getLocationListItemClass($data)"></a>
+                </li>
+            </ul>
+        </aside>
+        <button id="sidebar-toggle" class="sidebar-toggle-button">
+            <!--  TODO: Use a better arrow icon -->
+            <span class="hide-list"><span class="arrow-left">◄</span><span class="toggle-list-text">Hide List</span></span>
+            <span class="show-list"><span class="toggle-list-text">Show List</span><span class="arrow-right">►</span></span>
+        </button>
+        <div id="page-content-wrapper">
+            {{> header}}
+            <main>
+                <div class="google-map-wrapper">
+                    <div class="google-map" id="googleMap"></div>
+                </div>
+            </main>
+        </div> <!-- page-content-wrapper -->
+    </div> <!-- wrapper -->
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/libs/knockout-3.2.0.js"></script>
+    <script src="js/Address.js"></script>
+    <script src="js/Company.js"></script>
+    <script src="js/CompanyModel.js"></script>
+    <script src="js/mainmapscript.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDTYiGEY8-a21cTJc_X8gnCiBQCY4Vm988&callback=initMap&v=3" onerror="googleMapsError()"></script>
+    <script src="js/commonscript.js"></script>
+
+    <script>
+    $("#sidebar-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    </script>
+</body>
+</html>

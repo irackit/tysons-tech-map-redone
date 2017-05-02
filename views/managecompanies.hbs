@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Brian Albin">
+    <title>Manage Companies</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="css/commonstyles.css">
+    <link rel="stylesheet" href="css/commonformstyles.css">
+    <link rel="stylesheet" href="css/admintablestyles.css">
+    <link rel="stylesheet" href="css/managecompaniesstyles.css">
+</head>
+<body>
+    {{> header}}
+    <main>
+        <h1 class="admin-table-page-header">Manage Companies</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>CompanyID</th>
+                        <th>Name</th>
+                        <th>Website</th>
+                        <th>Logo</th>
+                        <th>Addresses</th>
+                        <th><img width="20" height="20" src="img/trash-icon.svg" alt="Delete"></th>
+                        <th><img width="20" height="20" src="img/edit-icon.svg" alt="Edit"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: $root.companyModel.companies">
+                    <tr>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedCompanyToEdit()" class="table-span">
+                                <span data-bind="text: companyId"></span>
+                            </span>
+                            <input readonly class="table-input" type="text" data-bind="textInput: companyId, visible: $data == $root.selectedCompanyToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedCompanyToEdit()" class="table-span">
+                                <span data-bind="text: name"></span>
+                            </span>
+                            <span data-bind="visible: $data == $root.selectedCompanyToEdit()">
+                                <input class="table-input" type="text" data-bind="textInput: name">
+                            </span>
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedCompanyToEdit()" class="table-span">
+                                <span data-bind="text: webSite"></span>
+                            </span>
+                            <span data-bind="visible: $data == $root.selectedCompanyToEdit()">
+                                <input class="table-input" type="text" data-bind="textInput: webSite">
+                            </span>
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedCompanyToEdit()" class="table-span">
+                                <span data-bind="text: logoImageFile"></span>
+                            </span>
+                            <span data-bind="visible: $data == $root.selectedCompanyToEdit()">
+                                <input class="table-input" type="text" data-bind="textInput: logoImageFile">
+                            </span>
+                        </td>
+                        <td>
+                            <button class="admin-table-btn" data-bind="click: $root.test">View Addresses</button>
+                        </td>
+                        <td>
+                            <button class="delete-item-btn" data-bind="click: $root.deleteCompanyButtonPressed, css: $root.getDeleteButtonClass($data)"></button>
+                        </td>
+                        <td>
+                            <button data-bind="click: $root.editCompanyButtonPressed, css: $root.getEditButtonClass($data)"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- table-container -->
+        <div class="add-item-btn-container">
+            <button data-bind="click: setAddingCompany"  id="add-item" class="std-btn add-item-btn">Add Company</button>
+        </div>
+    </main>
+    <div data-bind="visible: $root.addingCompany()" class="gray-out"></div>
+    <div data-bind="visible: $root.addingCompany()" class="add-item-menu">
+        <div class="form-container">
+            <h1 class="form-header">Add Company</h1>
+            <form data-bind="with: newCompany">
+                <fieldset>
+                    <div class="legend-container">
+                        <legend>Company Information</legend>
+                    </div>
+                    <input type="text" name="companyName" placeholder="Company Name" required autofocus class="common-txt-input">
+                    <input type="text" name="website" placeholder="Web Site" required class="common-txt-input">
+                    <input type="text" name="Logo" placeholder="Logo Image File" class="common-txt-input">
+                </fieldset>
+                <fieldset>
+                    <div class="legend-container">
+                        <legend>Address</legend>
+                    </div>
+                    <input type="text" name="addressStreetNo" placeholder="Street Number" required class="common-txt-input">
+                    <input type="text" name="addressStreetName" placeholder="Street Name" required class="common-txt-input">
+                    <input type="text" name="Ste." placeholder="Suite Number" required class="common-txt-input">
+                    <input type="text" name="addressCity" placeholder="City" required class="common-txt-input">
+                    <input type="text" name="addressZip" placeholder="Zip Code" required class="common-txt-input">
+                </fieldset>
+                <button class="std-btn submit-btn">Done</button>
+            </form>
+            <button data-bind="click: unsetAddingCompany" id="cancel" class="std-btn submit-btn cancel-btn">Cancel</button>
+        </div> <!-- form-container -->
+    </div> <!-- add-item-menu -->
+    <div data-bind="visible: $root.confirmDeleteMenuOpen" class="gray-out"></div>
+    <div data-bind="visible: $root.confirmDeleteMenuOpen" class="confirm-menu">
+        <div class="form-container">
+            <h1 class="form-header">Confirm Delete</h1>
+            <div class="large-modify-icon-container">
+                <img class="large-modify-icon" src="img/trash-icon-orange.svg" alt="Trash" width="150" height="150">
+            </div>
+            <p class="form-info">Are you sure you want to delete this company? This action cannot be undone.</p>
+            <button data-bind="click: $root.confirmDeleteSelectedCompanyButtonPressed" type="submit" class="std-btn submit-btn">Delete</button>
+            <button data-bind="click: $root.cancelDeleteSelectedCompanyButtonPressed" id="cancel" class="std-btn submit-btn cancel-btn">Cancel</button>
+        </div>
+    </div>
+    <div data-bind="visible: $root.confirmEditMenuOpen" class="gray-out"></div>
+    <div data-bind="visible: $root.confirmEditMenuOpen" class="confirm-menu">
+        <div class="form-container">
+            <h1 class="form-header">Confirm Edit</h1>
+            <div class="large-modify-icon-container">
+                <img class="large-modify-icon" src="img/edit-icon-orange.svg" alt="Edit" width="150" height="150">
+            </div>
+            <p class="form-info">Do you wish to save your changes?</p>
+            <button data-bind="click: $root.confirmEditSelectedCompanyButtonPressed" type="submit" class="std-btn submit-btn">Save</button>
+            <button data-bind="click: $root.cancelEditSelectedCompanyButtonPressed" id="cancel" class="std-btn submit-btn cancel-btn">Cancel</button>
+        </div>
+    </div>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/libs/knockout-3.2.0.js"></script>
+    <script src="js/commonscript.js"></script>
+    <script src="js/Company.js"></script>
+    <script src="js/Address.js"></script>
+    <script src="js/CompanyModel.js"></script>
+    <script src="js/managecompaniesscript.js"></script>
+</body>
+</html>

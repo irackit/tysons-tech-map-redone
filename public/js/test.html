@@ -1,0 +1,55 @@
+<html>
+<head>
+<script src="js/libs/knockout-3.2.0.js"></script>
+<script>
+function User(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+};
+
+function UserListViewModel() {
+    var self = this;
+
+    // TODO: Move this to a model?
+    self.users = ko.observableArray([
+        new User("Joe", "Dirt"),
+        new User("John", "Chen")
+    ]);
+
+    self.selectedUserToEdit = ko.observable();
+
+    // Makes this the selected user to edit, or if the user already is, then no longer edit
+    self.makeSelectedUserToEdit = function(user) {
+        if (user == ko.utils.unwrapObservable(self.selectedUserToEdit) ) {
+            self.selectedUserToEdit(null);
+        }
+        else {
+            self.selectedUserToEdit(user);
+        }
+    };
+}
+
+ko.applyBindings(new UserListViewModel());
+</script>
+</head>
+<body>
+    <table>
+        <tbody data-bind="foreach: users">
+            <tr>
+                <td>
+                    <span data-bind="text: firstName"></span>
+                </td>
+                <!--
+                <td>
+                    <span data-bind="text: lastName, visible: $data != $root.selectedUserToEdit()"></span>
+                    <input data-bind="value: lastName, visible: $data == $root.selectedUserToEdit()" type="text">
+                </td>
+                <td>
+                    <button data-bind="click: $root.makeSelectedUserToEdit">E</button>
+                </td>
+                -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

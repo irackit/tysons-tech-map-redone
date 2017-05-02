@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Brian Albin">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="css/commonstyles.css">
+    <link rel="stylesheet" href="css/commonformstyles.css">
+    <link rel="stylesheet" href="css/admintablestyles.css">
+    <link rel="stylesheet" href="css/manageusersstyles.css">
+</head>
+<body>
+    {{> header}}
+    <main>
+        <h1 class="admin-table-page-header">Manage Users</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Street No</th>
+                        <th>Street Name</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                        <th>User Admin</th>
+                        <th>News Admin</th>
+                        <th><img width="20" height="20" src="img/trash-icon.svg" alt="Delete"></th>
+                        <th><img width="20" height="20" src="img/edit-icon.svg" alt="Edit"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: $root.userModel.users">
+                    <tr>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: userId"></span>
+                            </span>
+                            <input readonly class="table-input" type="text" data-bind="textInput: userId, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: email"></span>
+                            </span>
+                            <span data-bind="visible: $data == $root.selectedUserToEdit()">
+                                <input class="table-input" type="text" data-bind="textInput: email">
+                            </span>
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: password"></span>
+                            </span>
+                            <span data-bind="visible: $data == $root.selectedUserToEdit()">
+                                <input class="table-input" type="text" data-bind="textInput: password">
+                            </span>
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: firstName"></span>
+                            </span>
+                            <input class="table-input" type="text" data-bind="textInput: firstName, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: lastName"></span>
+                            </span>
+                            <input class="table-input" type="text" data-bind="textInput: lastName, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: address.streetNo"></span>
+                            </span>
+                            <input class="table-input" type="text" data-bind="value: address.streetNo, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: address.streetName"></span>
+                            </span>
+                            <input class="table-input" type="text" data-bind="value: address.streetName, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: address.city"></span>
+                            </span>
+                            <input class="table-input" type="text" data-bind="value: address.city, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: address.state"></span>
+                            </span>
+                            <input class="table-input" type="text" data-bind="value: address.state, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
+                                <span data-bind="text: address.zip"></span>
+                            </span>
+                            <input class="table-input" type="text" data-bind="value: address.zip, visible: $data == $root.selectedUserToEdit()">
+                        </td>
+                        <td class="checkbox-table-cell">
+                            <input class="table-input" type="checkbox" data-bind="checked: isUserAdmin, disable: $data != $root.selectedUserToEdit()">
+                        </td>
+                        <td class="checkbox-table-cell">
+                            <input class="table-input" type="checkbox" data-bind="checked: isNewsAdmin, disable: $data != $root.selectedUserToEdit()">
+                        </td>
+                        <td>
+                            <button class="delete-item-btn" data-bind="click: $root.deleteUserButtonPressed, css: $root.getDeleteButtonClass($data)"></button>
+                        </td>
+                        <td>
+                            <button class="edit-item-btn" data-bind="click: $root.editUserButtonPressed, css: $root.getEditButtonClass($data)"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- table-container -->
+        <div class="add-item-btn-container">
+            <button data-bind="click: setAddingUser" id="add-item" class="std-btn add-item-btn">Add User</button>
+        </div>
+    </main>
+    <div data-bind="visible: $root.addingUser()" class="gray-out"></div>
+    <div data-bind="visible: $root.addingUser()" class="add-item-menu">
+        <div class="form-container">
+            <h1 class="form-header">Add User</h1>
+            <form data-bind="submit: $root.addUser, with: newUser">
+                <fieldset>
+                    <div class="legend-container">
+                        <legend>Email & Password</legend>
+                    </div>
+                    <input data-bind="value: email" type="email" name="email" placeholder="Email Address" required autofocus class="common-txt-input">
+                    <input data-bind="value: password" type="password" name="password" placeholder="Password" required class="common-txt-input">
+                </fieldset>
+                <fieldset>
+                    <div class="legend-container">
+                        <legend>Name (Optional)</legend>
+                    </div>
+                    <input data-bind="value: firstName" type="text" name="firstName" placeholder="First Name" class="common-txt-input">
+                    <input data-bind="value: lastName" type="text" name="lastName" placeholder="Last Name" class="common-txt-input">
+                </fieldset>
+                <fieldset>
+                    <div class="legend-container">
+                        <legend>Address (Optional)</legend>
+                    </div>
+                    <input data-bind="value: address.streetNo" type="text" name="addressStreetNo" placeholder="Street Number" class="common-txt-input">
+                    <input data-bind="value: address.streetName" type="text" name="addressStreetName" placeholder="Street Name" class="common-txt-input">
+                    <input data-bind="value: address.city" type="text" name="addressCity" placeholder="City" class="common-txt-input">
+                    <select data-bind="value: address.state, options: $root.availableStates" name="addressState" class="common-select">
+                    </select>
+                    <input data-bind="value: address.zip" type="text" name="addressZip" placeholder="Zip Code" class="common-txt-input">
+                </fieldset>
+                <fieldset>
+                    <div class="legend-container">
+                        <legend>Admin Privileges</legend>
+                    </div>
+                    <div>
+                        <label class="checkbox-label" for="isUserAdminCheckbox">User Admin</label>
+                        <input data-bind="checked: isUserAdmin" name="isUserAdminCheckbox" id="isUserAdminCheckbox" type="checkbox" class="form-checkbox checkbox-table-cell">
+                    </div>
+                    <div>
+                        <label class="checkbox-label" for="isNewsAdminCheckbox">News Admin</label>
+                        <input data-bind="checked: isNewsAdmin" name="isNewsAdminCheckbox" id="isNewsAdminCheckbox" type="checkbox" class="form-checkbox checkbox-table-cell">
+                    </div>
+                </fieldset>
+                <button type="submit" class="std-btn submit-btn">Done</button>
+            </form>
+            <button data-bind="click: unsetAddingUser" id="cancel" class="std-btn submit-btn cancel-btn">Cancel</button>
+        </div> <!-- form-container -->
+    </div> <!-- add-user-menu -->
+    <div data-bind="visible: $root.confirmDeleteMenuOpen" class="gray-out"></div>
+    <div data-bind="visible: $root.confirmDeleteMenuOpen" class="confirm-menu">
+        <div class="form-container">
+            <h1 class="form-header">Confirm Delete</h1>
+            <div class="large-modify-icon-container">
+                <img class="large-modify-icon" src="img/trash-icon-orange.svg" alt="Trash" width="150" height="150">
+            </div>
+            <p class="form-info">Are you sure you want to delete this user? This action cannot be undone.</p>
+            <button data-bind="click: $root.confirmDeleteSelectedUserButtonPressed" type="submit" class="std-btn submit-btn">Delete</button>
+            <button data-bind="click: $root.cancelDeleteSelectedUserButtonPressed" id="cancel" class="std-btn submit-btn cancel-btn">Cancel</button>
+        </div>
+    </div>
+    <div data-bind="visible: $root.confirmEditMenuOpen" class="gray-out"></div>
+    <div data-bind="visible: $root.confirmEditMenuOpen" class="confirm-menu">
+        <div class="form-container">
+            <h1 class="form-header">Confirm Edit</h1>
+            <div class="large-modify-icon-container">
+                <img class="large-modify-icon" src="img/edit-icon-orange.svg" alt="Edit" width="150" height="150">
+            </div>
+            <p class="form-info">Do you wish to save your changes?</p>
+            <button data-bind="click: $root.confirmEditSelectedUserButtonPressed" type="submit" class="std-btn submit-btn">Save</button>
+            <button data-bind="click: $root.cancelEditSelectedUserButtonPressed" id="cancel" class="std-btn submit-btn cancel-btn">Cancel</button>
+        </div>
+    </div>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/libs/knockout-3.2.0.js"></script>
+    <script src="js/commonscript.js"></script>
+    <script src="js/Address.js"></script>
+    <script src="js/User.js"></script>
+    <script src="js/manageusersscript.js"></script>
+</body>
+</html>

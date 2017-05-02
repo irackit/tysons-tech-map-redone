@@ -1,0 +1,134 @@
+body {
+    background-color: #CCC;
+}
+
+.search-bar-container {
+    background-color: white;
+    width: 210px;
+    height: 24px;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.search-bar-text-box {
+    outline: none;
+    border: none;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.search-bar-magnifying-glass {
+    display: inline-block;
+}
+
+
+.sidebar-toggle-button:hover {
+    /* TODO */
+}
+
+.sidebar-toggle-button {
+    margin-left: 15px;
+    position: absolute;
+    width: 121px;
+    height: 30px;
+    z-index: 2;
+    top: 100px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,.4);
+    border-radius: 6px;
+    background-color: #02B3E4;
+    background-image: -webkit-linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+    background-image: -moz-linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+    background-image: -o-linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+    background-image: linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+    color: white;
+    border: 0;
+    font-family: Georgia;
+    font-size: 16px;
+    display: block;
+    font-weight: bold;
+}
+
+.sidebar-toggle-button:active {
+    background-color: #028FB6;
+    background-image: -webkit-linear-gradient(to bottom, #015A72 0%, #02B3E4 100%);
+    background-image: -moz-linear-gradient(to bottom, #015A72 0%, #02B3E4 100%);
+    background-image: -o-linear-gradient(to bottom, #015A72 0%, #02B3E4 100%);
+    background-image: linear-gradient(to bottom, #015A72 0%, #02B3E4 100%);
+}
+
+.sidebar-toggle-button:active span {
+    bottom: 1px;
+    font-size: 14px;
+}
+
+.sidebar-toggle-button:hover span {
+    font-weight: bold;
+}
+
+.sidebar-toggle-button:focus {
+    outline: none;
+}
+
+.sidebar-toggle-button:hover {
+    font-weight: 600;
+}
+
+.show-list {
+    display: none;
+}
+
+.hide-list {
+    display: block;
+}
+
+#wrapper.toggled .show-list {
+    display: block;
+}
+
+#wrapper.toggled .hide-list {
+    display: none;
+}
+
+.arrow-left {
+    margin-right: 6px;
+}
+
+.arrow-right {
+    margin-left: 6px;
+}
+
+.google-map-wrapper {
+    height: 100%;
+    padding: 0;
+}
+
+.google-map {
+    height: 100%;
+    min-height: 200px;
+    background-color: #CCC
+}
+
+.info-window-header {
+    font-size: 24px;
+}
+
+.info-window-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+}
+
+@media screen and (max-width: 540px) {
+
+    .toggle-list-text {
+        display: none;
+    }
+
+    .sidebar-toggle-button {
+        width: 50px;
+    }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Brian Albin">
+    <title>Administrator Options</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="css/commonstyles.css">
+    <link rel="stylesheet" href="css/commonformstyles.css">
+    <link rel="stylesheet" href="css/adminstyles.css">
+</head>
+<body>
+    {{> header}}
+    <main>
+        <ul class="admin-menu">
+            <li class="menu-header">Admin Menu</li>
+            <li class="menu-item"><a href="/manageusers">Manage Users</a></li>
+            <li class="menu-item"><a href="/managecompanies">Manage Companies</a></li>
+            <li class="menu-item"><a href="/managenews">Manage News</a></li>
+        </ul>
+    </main>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/libs/knockout-3.2.0.js"></script>
+    <script src="js/commonscript.js"></script>
+</body>
+</html>

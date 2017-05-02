@@ -1,0 +1,12 @@
+button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.forgot {
+    text-align: center;
+}
+
+.forgot a:first-of-type {
+    margin-bottom: 1px;
+}

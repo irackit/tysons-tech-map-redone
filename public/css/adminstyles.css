@@ -1,0 +1,74 @@
+main {
+    max-width: 850px;
+    display: flex;
+    height: auto; /* for stupid ie users */
+    height: initial;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-menu {
+    min-width: 280px;
+    color: white;
+    background-color: #F8981C;
+    list-style-type: none;
+    padding: 0;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Georgia;
+    font-size: 22px;
+    text-align: center;
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    -o-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.admin-menu .menu-header {
+    font-family: impact;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    background-color: #02B3E4;
+    background-image: -webkit-linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+    background-image: -moz-linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+    background-image: -o-linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+    background-image: linear-gradient(to bottom, #02B3E4 0%, #015A72 100%);
+}
+
+.admin-menu .menu-item {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    background-color: #02B3E4;
+    background-image: -webkit-linear-gradient(to bottom, #F8981C 0%, #D38118 100%);
+    background-image: -moz-linear-gradient(to bottom, #F8981C 0%, #D38118 100%);
+    background-image: -o-linear-gradient(to bottom, #F8981C 0%, #D38118 100%);
+    background-image: linear-gradient(to bottom, #F8981C 0%, #D38118 100%);
+    border-top: 1px solid #F8981C;
+    border-bottom: 1px solid #D38118;
+    border-right: 1px solid #D38118;
+    border-left: 1px solid #D38118;
+    border-radius: 9px;
+}
+
+.admin-menu .menu-item:active {
+    background-image: -webkit-linear-gradient(to bottom, #D38118 0%, #F8981C 100%);
+    background-image: -moz-linear-gradient(to bottom, #D38118 0%, #F8981C 100%);
+    background-image: -o-linear-gradient(to bottom, #D38118 0%, #F8981C 100%);
+    background-image: linear-gradient(to bottom, #D38118 0%, #F8981C 100%);
+}
+
+.menu-item a {
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+}
+
+.menu-item a:focus {
+    text-decoration: none;
+}
