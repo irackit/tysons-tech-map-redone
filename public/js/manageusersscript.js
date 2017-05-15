@@ -2,8 +2,8 @@ function UserModel() {
     var self = this;
 
     self.users = ko.observableArray([
-        new User(1, 'brianalbin3@gmail.com', '123456', 'Brian', 'Albin', '6793', 'Old Waterloo Road', 'Elkridge', 'Maryland', '21075', true, true ),
-        new User(2, 'lucidrain929@gmail.com', '123456', 'Yuzhong', 'Chen', '6793', 'Old Waterloo Road', 'Elkridge', 'Maryland', '21075', false, false )
+        new User(1, 'brianalbin3@gmail.com', '123456', '6793', 'Old Waterloo Road', 'Elkridge', 'Maryland', '21075', true, true ),
+        new User(2, 'lucidrain929@gmail.com', '123456', '6793', 'Old Waterloo Road', 'Elkridge', 'Maryland', '21075', false, false )
     ]);
 
    /**

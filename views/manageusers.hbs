@@ -23,8 +23,6 @@
                         <th>UserID</th>
                         <th>Email</th>
                         <th>Password</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
                         <th>Street No</th>
                         <th>Street Name</th>
                         <th>City</th>
@@ -59,18 +57,6 @@
                             <span data-bind="visible: $data == $root.selectedUserToEdit()">
                                 <input class="table-input" type="text" data-bind="textInput: password">
                             </span>
-                        </td>
-                        <td>
-                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
-                                <span data-bind="text: firstName"></span>
-                            </span>
-                            <input class="table-input" type="text" data-bind="textInput: firstName, visible: $data == $root.selectedUserToEdit()">
-                        </td>
-                        <td>
-                            <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
-                                <span data-bind="text: lastName"></span>
-                            </span>
-                            <input class="table-input" type="text" data-bind="textInput: lastName, visible: $data == $root.selectedUserToEdit()">
                         </td>
                         <td>
                             <span data-bind="visible: $data != $root.selectedUserToEdit()" class="table-span">
@@ -133,13 +119,6 @@
                     </div>
                     <input data-bind="value: email" type="email" name="email" placeholder="Email Address" required autofocus class="common-txt-input">
                     <input data-bind="value: password" type="password" name="password" placeholder="Password" required class="common-txt-input">
-                </fieldset>
-                <fieldset>
-                    <div class="legend-container">
-                        <legend>Name (Optional)</legend>
-                    </div>
-                    <input data-bind="value: firstName" type="text" name="firstName" placeholder="First Name" class="common-txt-input">
-                    <input data-bind="value: lastName" type="text" name="lastName" placeholder="Last Name" class="common-txt-input">
                 </fieldset>
                 <fieldset>
                     <div class="legend-container">

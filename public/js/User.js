@@ -5,8 +5,6 @@
  * @param {string} userId The id of this user in the database
  * @param {string} email The email address of this user
  * @param {string} password The password of this user
- * @param {string} firstName User's first name
- * @param {string} lastName User's last name
  * @param {string} streetNo Street number of this user's address
  * @param {string} streetName Street name of this user's address
  * @param {string} city City of this user's address
@@ -15,12 +13,10 @@
  * @param {boolean} isUserAdmin If the user is admin of users (can add/delete/modify users)
  * @param {boolean} isNewsAdmin If the user is admin of News
  */
-function User(userId, email, password, firstName, lastName, streetNo, streetName, city, state, zip, isUserAdmin, isNewsAdmin) {
+function User(userId, email, password, streetNo, streetName, city, state, zip, isUserAdmin, isNewsAdmin) {
     this.userId = ko.observable(userId);
     this.email = ko.observable(email);
     this.password = ko.observable(password);
-    this.firstName = ko.observable(firstName);
-    this.lastName = ko.observable(lastName);
     this.address = new Address(streetNo, streetName, null, city, state, zip);   // We don't care about user's apartment number, so leave null
     this.isUserAdmin = ko.observable(isUserAdmin);
     this.isNewsAdmin = ko.observable(isNewsAdmin);
@@ -34,8 +30,6 @@ User.prototype.copy = function(otherUser) {
     this.userId( ko.utils.unwrapObservable(otherUser.userId) );
     this.email( ko.utils.unwrapObservable(otherUser.email) );
     this.password( ko.utils.unwrapObservable(otherUser.password) );
-    this.firstName( ko.utils.unwrapObservable(otherUser.firstName) );
-    this.lastName( ko.utils.unwrapObservable(otherUser.lastName) );
     this.address.copy(otherUser.address);
     this.isUserAdmin( ko.utils.unwrapObservable(otherUser.isUserAdmin) );
     this.isNewsAdmin( ko.utils.unwrapObservable(otherUser.isNewsAdmin) );
@@ -50,8 +44,6 @@ User.prototype.equals = function(otherUser) {
     if ( ko.utils.unwrapObservable(this.userId) === ko.utils.unwrapObservable(otherUser.userId) &&
          ko.utils.unwrapObservable(this.email) === ko.utils.unwrapObservable(otherUser.email) &&
          ko.utils.unwrapObservable(this.password) === ko.utils.unwrapObservable(otherUser.password) &&
-         ko.utils.unwrapObservable(this.firstName) === ko.utils.unwrapObservable(otherUser.firstName) &&
-         ko.utils.unwrapObservable(this.lastName) === ko.utils.unwrapObservable(otherUser.lastName) &&
          this.address.equals(otherUser.address) &&
          ko.utils.unwrapObservable(this.isUserAdmin) === ko.utils.unwrapObservable(otherUser.isUserAdmin) &&
          ko.utils.unwrapObservable(this.isNewsAdmin) === ko.utils.unwrapObservable(otherUser.isNewsAdmin) ) {
@@ -83,22 +75,6 @@ User.prototype.getPassword = function() {
 
 User.prototype.setPassword = function(password) {
     this.password(password);
-};
-
-User.prototype.getFirstName = function() {
-    return ko.utils.unwrapObservable(this.firstName);
-};
-
-User.prototype.setFirstName = function(firstName) {
-    this.firstName(firstName);
-};
-
-User.prototype.getLastName = function() {
-    return ko.utils.unwrapObservable(this.lastName);
-};
-
-User.prototype.setLastName = function(lastName) {
-    this.lastName(lastName);
 };
 
 User.prototype.getStreetNo = function () {

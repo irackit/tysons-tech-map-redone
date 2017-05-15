@@ -1,0 +1,12 @@
+{
+	"test": {
+		"PORT": 3000,
+		"MONGODB_URI": "mongodb://localhost:27017/TechMapAppTest",
+		"JWT_SECRET": "sdfsdf4345345ergfertr345634g34g43435fjyujkyuk"
+	},
+	"development": {
+		"PORT": 3000,
+		"MONGODB_URI": "mongodb://localhost:27017/TechMapApp",
+		"JWT_SECRET": "hfdghdrh546ehy45ehe456he4r5h4e5rhse45rh4e56h"
+	}
+}
