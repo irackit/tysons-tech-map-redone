@@ -14,6 +14,7 @@ var {authenticate, authenticateAdmin} = require('./middleware/authenticate');
 const port = process.env.PORT;
 var app = express();
 
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -31,7 +32,7 @@ app.get('/', (req, res) => {
  	});
 });
 
-app.get('/admin', (req, res) => {
+app.get('/admin', authenticateAdmin, (req, res) => {
  	res.render('admin.hbs');
 });
 
@@ -43,11 +44,11 @@ app.get('/forgotpassword', (req, res) => {
  	res.render('forgotpassword.hbs');
 });
 
-app.get('/managecompanies', (req, res) => {
+app.get('/managecompanies', authenticateAdmin, (req, res) => {
  	res.render('managecompanies.hbs');
 });
 
-app.get('/manageusers', (req, res) => {
+app.get('/manageusers', authenticateAdmin, (req, res) => {
  	res.render('manageusers.hbs');
 });
 
@@ -65,12 +66,14 @@ app.get('/signup', (req, res) => {
 
 // Create new user
 app.post('/users', (req, res) => {
-	var body = _.pick(req.body, ['email', 'password', 'isAdmin']);
+	console.log(req.body)
+	var body = _.pick(req.body, ['email', 'password', 'streetNo', 'streetName', 'city', 'state', 'zip']);
 	var user = new User(body);
 
 	user.save().then(() => {
 		return user.generateAuthToken();
 	}).then((token) => {
+		console.log("SUCCESS")
 		res.header('x-auth', token).send(user);
 	}).catch((e) => {
   		res.status(400).send(e);
@@ -116,6 +119,11 @@ app.post('/companies', authenticateAdmin, (req, res) => {
 	});
 });
 
+// TODO: NEED UPDATE FOR ISADMIN
+
+
+// TODO: NEED DELETE FOR USER
+
 // Get all companies
 app.get('/companies', (req, res) => {
 	Company.find().then((companies) => {
@@ -145,7 +153,6 @@ app.get('/companies/:id', (req, res) => {
 		res.status(400).send();
 	});
 });
-
 
 // Delete a company
 app.delete('/companies/:id', authenticateAdmin, (req, res) => {
