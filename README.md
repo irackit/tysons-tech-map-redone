@@ -13,7 +13,7 @@ This site is an interactive map of all the technology companies in Tysons Corner
 5. Install MongoDB using the complete option
 6. Go to your home directory and create a folder called mongo-data
 7. Navigate to your MongoDB installation directory and then navigate to the bin folder in command prompt and NOT git bash.
-8. Run mongod.exe --dpath path-to-your-mongo-data-folder
+8. Run mongod.exe --dbpath path-to-your-mongo-data-folder
 9. Download Robomongo installer and NOT the portable edition from [here](https://robomongo.org/download)
 10. Install Robomongo
 11. Open Robomongo
