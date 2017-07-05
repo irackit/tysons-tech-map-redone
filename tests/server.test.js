@@ -10,6 +10,18 @@ const {users, companies, populateUsers, populateCompanies} = require('./seed/see
 beforeEach(populateUsers);
 beforeEach(populateCompanies);
 
+describe('GET /users', () => {
+	it('should get all users', (done) => {
+		request(app)
+		.get('/users')
+		.expect(200)
+		.expect((res) => {
+			expect(res.body.users.length).toBe(2);
+		})
+		.end(done);
+	});	
+});
+
 describe('GET /users/me', () => {
 	it('should return user if authenticated', (done) => {
 		request(app)
@@ -49,7 +61,7 @@ describe('POST /users', () => {
 				expect(res.headers['x-auth']).toExist();
 				expect(res.body._id).toExist();
 				expect(res.body.email).toBe(email);
-				expect(res.body.isAdmin).toBe(isAdmin)
+				//TODO: TEST ADDRESS
 			})
 			.end((err) => {
 				if (err) {

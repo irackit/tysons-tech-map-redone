@@ -49,7 +49,7 @@ UserSchema.methods.toJSON = function() {
 	var user = this;
 	var userObject = user.toObject();
 
-	return _.pick(userObject, ['_id', 'email', 'isAdmin']);
+	return _.pick(userObject, ['_id', 'email', 'address', 'isAdmin']);
 };
 
 UserSchema.methods.generateAuthToken = function() {

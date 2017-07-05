@@ -14,7 +14,7 @@ var {authenticate, authenticateAdmin} = require('./middleware/authenticate');
 const port = process.env.PORT;
 var app = express();
 
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -22,15 +22,17 @@ app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
 
-// hbs.registerHelper('getCurrentYear', () => { return new Date().getFullYear(); });
-// hbs.registerHelper('screamIt', (text) => { return text.toUpperCase(); });
+hbs.registerHelper('getCurrentYear', () => { return new Date().getFullYear(); });
+hbs.registerHelper('screamIt', (text) => { return text.toUpperCase(); });
 
 // Pages
+/*
 app.get('/', (req, res) => {
  	res.render('index.hbs', {
  		pageTitle: 'Home'
  	});
 });
+*/
 
 app.get('/admin', authenticateAdmin, (req, res) => {
  	res.render('admin.hbs');
@@ -64,21 +66,31 @@ app.get('/signup', (req, res) => {
 
 // REST Stuff
 
+// Get all users
+app.get('/users', (req, res) => {
+	User.find().then((users) => {
+		res.send({users});
+	}, (e) => {
+		res.status(400).send(e);
+	});
+});
+
 // Create new user
 app.post('/users', (req, res) => {
 	console.log(req.body)
-	var body = _.pick(req.body, ['email', 'password', 'streetNo', 'streetName', 'city', 'state', 'zip']);
+	var body = _.pick(req.body, ['email', 'password', 'address']);
 	var user = new User(body);
 
 	user.save().then(() => {
 		return user.generateAuthToken();
 	}).then((token) => {
-		console.log("SUCCESS")
 		res.header('x-auth', token).send(user);
 	}).catch((e) => {
   		res.status(400).send(e);
   	});
 });
+
+// TODO: Patch user to modify admin
 
 // Returns user if authenticated
 app.get('/users/me', authenticate, (req, res) => {
