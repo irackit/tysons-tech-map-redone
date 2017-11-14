@@ -1,0 +1,48 @@
+@import "base/variables";
+
+// Foundation
+@import "base/foundation-settings";
+@import "foundation";
+@include foundation-everything;
+
+// Components
+@import "components/adminUserTable";
+@import "components/adminMenu";
+@import "components/editProfile";
+@import "components/forgotPassword";
+@import "components/nav";
+@import "components/signIn";
+@import "components/signUp";
+
+// Styles shared between components
+@import "common/forms";
+
+// Is there a better spot for these?
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+//Can we do this in foundation somewhere?
+button {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+Do I want something like this?
+.page-content-container {
+    width: 100%;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+*/

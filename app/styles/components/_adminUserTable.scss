@@ -1,0 +1,177 @@
+/* TODO: I NEED TO MAKE 100% SURE THESE ARE CONTAINED SO THEY DONT AFFECT OTHER PAGES */
+
+.admin-user-table {
+    width: 100%;
+
+    h1 {
+        background-color: $sky-blue;
+        color: white;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .header-row {
+        display: flex;
+        font-weight: bold;
+        -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+        -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+        -o-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+        box-shadow: 0px 2px 2px rgba(0,0,0,0.3);
+        margin-bottom: 3px;
+        cursor: pointer;
+        color: white;
+        background-color: $sky-blue;
+    }
+
+    .admin-table-row {
+        display: flex;
+    }
+
+    div.admin-table-row:hover {
+        background-color: $sky-blue;
+        color: white;
+    }
+
+    .admin-table-row:nth-child(even) {
+        background-color: white;
+    }
+
+    .admin-table-row:nth-child(odd) {
+        background-color: #f3f3f3;
+    }
+
+    .cell {
+        font-size: 10px;
+        font-family: 'Georgia';
+        margin-left: 2px;
+        margin-right: 2px;
+        min-width: 80px;
+        width: 25%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
+        border-right: 1px solid #d3d3d3;
+        overflow-x: hidden;
+    }
+
+    .cell:first-of-type {
+        margin-left: 0px;
+    }
+
+    .cell:last-of-type {
+        margin-right: 0px;
+        border-right: 0;
+    }
+
+    .pagination-ctrls {
+        display: flex;
+        width: 100%;
+        height: 34px;
+    }
+
+    .pagination-btn-container {
+        width: 33.3%;
+        padding: 2px;
+    }
+
+    .pagination-btn {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        border-radius: 3px;
+        background-color: $sky-blue;
+        background-image: -webkit-linear-gradient(to bottom, $sky-blue 0%, $dark-sky-blue 100%);
+        background-image: -moz-linear-gradient(to bottom, $sky-blue 0%, $dark-sky-blue 100%);
+        background-image: -o-linear-gradient(to bottom, $sky-blue 0%, $dark-sky-blue 100%);
+        background-image: linear-gradient(to bottom, $sky-blue 0%, $dark-sky-blue 100%);
+        color: white;
+        font-family: Georgia;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .pagination-btn:active {
+        background-color: $sky-blue;
+        background-image: -webkit-linear-gradient(to top, $sky-blue 0%, $dark-sky-blue 100%);
+        background-image: -moz-linear-gradient(to top, $sky-blue 0%, $dark-sky-blue 100%);
+        background-image: -o-linear-gradient(to top, $sky-blue 0%, $dark-sky-blue 100%);
+        background-image: linear-gradient(to top, $sky-blue 0%, $dark-sky-blue 100%);
+        border: 1px solid #f3f3f3;
+        font-size: 12px;
+    }
+
+    .pagination-prev-btn::before {
+        content: 'Previous';
+    }
+
+    .pagination-next-btn::before {
+        content: 'Next';
+    }
+
+    .pagination-btn:focus {
+        outline: none;
+    }
+
+    .clickable-btn {
+        cursor: pointer;
+    }
+
+    .non-clickable-btn {
+        cursor: not-allowed;
+    }
+
+    .page-info-container-container {
+        width: 33.3%;
+        min-width: 90px;
+        line-height: 30px;
+        vertical-align: middle;
+        padding: 2px;
+    }
+
+    .page-info-container {
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+        font-family: 'Georgia';
+        background-color: $sky-blue;
+        color: white;
+        width: 90px;
+        border-radius: 5px;
+    }
+
+    .page-num {
+        font-weight: bold;
+    }
+
+    @media screen and (max-width: 450px) {
+        .pagination-prev-btn::before {
+            content: '<<';
+        }
+
+        .pagination-next-btn::before {
+            content: '>>';
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .admin-table-row, .header-row {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cell {
+            width: 100%;
+            margin: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 0;
+            padding-left: 10px;
+            border: none;
+        }
+    }
+}
+

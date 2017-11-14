@@ -1,0 +1,34 @@
+.header-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 26px;
+    color: #f4f4f4;
+    font-family: Impact;
+    font-weight: 200;
+}
+
+.profile {
+    width: 24px;
+    height: 24px;
+    border: 2px solid white;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bolder;
+    background-color: #F8981C;
+    cursor: pointer;
+    color: white;
+    font-family: Georgia;
+    font-size: 16px;
+    box-sizing: content-box;
+}
+
+.top-bar {
+	.menu > .menu-text {
+		display: inline;
+		padding: 0;
+	}
+
+	.active-link {
+		font-weight: bold;
+	}
+}

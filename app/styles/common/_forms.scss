@@ -1,0 +1,118 @@
+.form-container {
+    width: 305px;
+    border: 15px solid white;
+    background-color: white;
+    padding: 0;
+    -webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    -o-box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.3);
+}
+
+.form-header {
+    background-color: $sky-blue;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Georgia;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+// TODO: Maybe rename this?
+.form-info {
+    background-color: $sky-blue;
+    font-size: 16px;
+    font-family: Georgia;
+    border: 1px solid $sky-blue;
+    padding: 5px;
+    color: #FFF;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+fieldset {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 0;
+    padding-bottom: 5px;
+    border: 1px solid $sky-blue;
+    background-color: #F3F3F3;
+}
+
+.legend-container {
+    width: 100%;
+    text-align: left;
+    background-color: $sky-blue;
+}
+
+legend {
+    color: white;
+    font-size: 18px;
+    font-family: Georgia;
+    border: none;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.common-txt-input {
+    width: 172px;
+    border: 1px solid #BBB;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.common-txt-input:first-of-type {
+    margin-top: 8px;
+}
+
+.common-txt-input:last-of-type {
+    margin-bottom: 8px;
+}
+
+.common-select, .common-txt-input {
+    margin-bottom: 6px;
+}
+
+// TODO WAY TOO BROAD?
+.common-select {
+    width: 172px;
+    height: 26px;
+    border: 1px solid #BBB;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.checkbox-label {
+    width: 100px;
+}
+
+.form-checkbox {
+    position: relative;
+    top: 3px;
+}
+
+.submit-btn {
+    width: 100%;
+}
+
+.cancel-btn {
+    margin-top: 5px;
+}
+
+@media screen and (max-width:350px) {
+    .form-container {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}

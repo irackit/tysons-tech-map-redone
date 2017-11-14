@@ -224,7 +224,7 @@ class AdminUserTable extends React.Component {
         for (let i = startPos; i <= endPos; i++) {
             console.log(this.state.users[i])
             let row = (
-                <div className="row">
+                <div className="admin-table-row">
                     <div className="cell">{this.state.users[i].email}</div>
                     <div className="cell">{this.state.users[i].address.streetNo}</div>
                     <div className="cell">{this.state.users[i].address.streetName}</div>
@@ -253,7 +253,7 @@ class AdminUserTable extends React.Component {
         );
 
         return (
-            <div className="table-container">
+            <div className="admin-user-table">
                 {headerRow}
                 {rows}
                 {paginationControls}
@@ -262,6 +262,4 @@ class AdminUserTable extends React.Component {
     }
 }
 
-//export default AdminUserTable;
-
-module.exports = AdminUserTable;
+export default AdminUserTable;

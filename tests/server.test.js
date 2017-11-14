@@ -10,6 +10,7 @@ const {users, companies, populateUsers, populateCompanies} = require('./seed/see
 beforeEach(populateUsers);
 beforeEach(populateCompanies);
 
+
 describe('GET /users', () => {
 	it('should get all users', (done) => {
 		request(app)
@@ -97,6 +98,7 @@ describe('POST /users', () => {
 			.end(done);
 	});
 });
+
 
 describe('POST /users/login', () => {
 	it('should login user and return auth token', (done) => {

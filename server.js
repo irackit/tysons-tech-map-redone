@@ -34,35 +34,43 @@ app.get('/', (req, res) => {
 });
 */
 
-app.get('/admin', authenticateAdmin, (req, res) => {
+app.get('/admin', /*authenticateAdmin,*/ (req, res) => {
  	res.render('admin.hbs');
 });
 
+/*
 app.get('/editprofile', (req, res) => {
  	res.render('editprofile.hbs');
 });
+*/
 
+/*
 app.get('/forgotpassword', (req, res) => {
  	res.render('forgotpassword.hbs');
 });
+*/
 
-app.get('/managecompanies', authenticateAdmin, (req, res) => {
+app.get('/managecompanies', /*authenticateAdmin,*/ (req, res) => {
  	res.render('managecompanies.hbs');
 });
 
-app.get('/manageusers', authenticateAdmin, (req, res) => {
+app.get('/manageusers', /*authenticateAdmin,*/ (req, res) => {
  	res.render('manageusers.hbs');
 });
 
+/*
 app.get('/signin', (req, res) => {
  	res.render('signin.hbs');
 });
+*/
 
+/*
 app.get('/signup', (req, res) => {
  	res.render('signup.hbs', {
  		pageTitle: 'About Page'
  	});
 });
+*/
 
 // REST Stuff
 
